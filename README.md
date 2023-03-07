@@ -15,49 +15,37 @@ the code for use on other machines through managing the dependencies.
 ## ISS Data
 
 The data that can be gathered from this REST API is mostly position and velocity data of the ISS at a given epoch.
-An epoch is a point in time and is represented by a string in the form '<YEAR>-<DAYOFYEAR>T<TIME>Z'. At a given epoch,
+An epoch is a point in time and is represented by a string in the form '\<YEAR\>-\<DAYOFYEAR\>T\<TIME\>Z'. At a given epoch,
 the ISS data records a state vector with the three components of the position and velocity in the J2000 frame. The
 units for these components are km and km/s respectively.
 
 ## iss\_tracker.py
 
 This python script runs the API that the user can pull from. It has the following routes:  
-    '/'  
-    '/epochs' - contains query parameters 'limit' and 'offset  
-    '/epochs/\<epoch>'  
-    '/epochs/\<epoch>/speed'  
-    '/help'  
-    '/delete-data'  
-    '/post-data'    
-    '/comment'  
-    '/header'  
-    '/metadata'  
-    '/epochs/\<epoch>/location'  
-    '/now'  
 
-'/' returns the entire data set for the ISS tracker in .xml form. It returns it to the user as a dictionary.
+'/' - returns the entire data set for the ISS tracker in .xml form. It returns it to the user as a dictionary.
 
-'/epochs' returns a list of strings that contains all of the epochs (times) contained in the data.
+'/epochs' - returns a list of strings that contains all of the epochs (times) contained in the data.
 
-'/epochs/\<epoch>' returns the state vector of the ISS at the given epoch.
+'/epochs/\<epoch>' - returns the state vector of the ISS at the given epoch.
 
-'/epochs/\<epoch\>/speed' returns the absolute speed of the ISS in km/s at the given epoch.
+'/epochs/\<epoch\>/speed' - returns the absolute speed of the ISS in km/s at the given epoch.
 
-'/help' returns a message detailing all routes available to the user.
+'/help' - returns a message detailing all routes available to the user.
 
-'/delete-data' deletes the ISS data that was pulled from the .xml file on the ISS website
+'/delete-data' - deletes the ISS data that was pulled from the .xml file on the ISS website
 
-'/post-data' posts the ISS data back to the server for use in other methods after it's been deleted
+'/post-data' - posts the ISS data back to the server for use in other methods after it's been deleted
 
-'/comment' returns the comment block from the ISS .xml data
+'/comment' - returns the comment block from the ISS .xml data
 
-'/header' returns the header object from the ISS .xml data
+'/header' - returns the header object from the ISS .xml data
 
-'/metadata' returns the metadata object from the ISS .xml data
+'/metadata' - returns the metadata object from the ISS .xml data
 
-'/epochs/\<epoch\>/location' returns the geopositional location data for a given epoch
+'/epochs/\<epoch\>/location' - returns the geopositional location data for a given epoch
 
-'/now' returns the geopositional location data for the epoch closest to the current time
+'/now' - returns the geopositional location data for the epoch closest to the current time
 
 ## How to run the code
 
@@ -127,4 +115,4 @@ Finally, here is what I believe to be the most impressive query to run:
 ```
 This should produce this output:
 ```
-    
+
