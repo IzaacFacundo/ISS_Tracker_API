@@ -22,13 +22,13 @@ units for these components are km and km/s respectively.
 ## iss\_tracker.py
 
 This python script runs the API that the user can pull from. It has the following routes:
-    '/'
-    '/epochs' - contains query parameters 'limit' and 'offset
-    '/epochs/\<epoch>'
-    '/epochs/\<epoch>/speed'
-    '/help'
-    '/delete-data'
-    '/post-data'
+    '/'  
+    '/epochs' - contains query parameters 'limit' and 'offset  
+    '/epochs/\<epoch>'  
+    '/epochs/\<epoch>/speed'  
+    '/help'  
+    '/delete-data'  
+    '/post-data'  
 
 '/' returns the entire data set for the ISS tracker in .xml form. It returns it to the user as a dictionary.
 
