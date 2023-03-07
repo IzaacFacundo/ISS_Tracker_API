@@ -115,4 +115,26 @@ Finally, here is what I believe to be the most impressive query to run:
 ```
 This should produce this output:
 ```
-
+{
+  "closest_epoch": "2023-066T04:31:30.000Z",
+  "geo": {
+    "ISO3166-2-lvl4": "US-NC",
+    "country": "United States",
+    "country_code": "us",
+    "county": "Onslow County",
+    "state": "North Carolina"
+  },
+  "location": {
+    "altitude": {
+      "units": "km",
+      "value": 416.2411014770796
+    },
+    "latitiude": 34.73405901165495,
+    "longitude": -78.85015633069156
+  },
+  "seconds_from_now": -88.0,
+  "speed": {
+    "units": "km/s",
+    "value": "7.668252667574941"
+  }
+}

@@ -41,6 +41,10 @@ def convert_j2k_to_geoposition(state_vector_dict:dict):
     lon = math.degrees(math.atan2(y, x)) - ((hrs-12)+(mins/60))*(360/24) + 24
     alt = math.sqrt(x**2 + y**2 + z**2) - MEAN_EARTH_RADIUS
     altitude = {"value" : alt, "units": "km"}
+    
+    if lon > 180:
+        lon = lon - 360
+
     geodata = {"latitude" : lat, "longitude" : lon, "altitude" : altitude} 
 
     return(geodata)
@@ -156,7 +160,7 @@ def get_speed(epoch:str) -> dict:
 @app.route('/help',methods=['GET'])
 def help_menu() -> str:
     '''
-        This function takes no arguments and returns a block of text detailing all of the routes  
+        This function takes no arguments and returns a block of text detailing all of the routes
         a user can call in this flask app.
 
         Args: NONE
@@ -166,17 +170,23 @@ def help_menu() -> str:
     '''
     intro = "Usage (terminal): curl 'localhost:5000[route]' \n\n"
     routes = "Routes: \n"
-    slash = "    '/'                        Returns entire ISS dataset in json dictionary form\n"
-    epochs = "    '/epochs'                  Returns a list of all epochs of recorded ISS data\n"
-    query = "                                   Query Parameters: \n"
-    queryl = "                                       limit   Positive integer of how many epochs to display\n"
-    queryo = "                                       offset  Positive integer of which epoch will start the list\n"
-    state = "    '/epochs/<epoch>'          Returns the state vector (position in km and velocity in km/s) of the \n                               ISS at a specified epoch\n"
-    speed = "    '/epochs/<epoch>/speed'    Returns the absolute speed of specific epoch in km/s\n"
-    help_route = "    '/help'                    Returns this help menu\n"
-    delete_data = "    '/delete-data'             Deletes all ISS Data stored in app. Must be run with '-X DELETE' \n                               following the curl command and preceding the address and route.\n"
-    post_data = "    '/post-data'               Retrieves ISS data from the ISS website restoring it after use of \n                               '/delete-data'. Must be run with '-X POST' following the curl \n                               command and preceding the address and route.\n"
-    message = "\n" + intro + routes + slash + epochs + query + queryl + queryo + state + speed + help_route + delete_data + post_data
+    slash = "    '/'                          Returns entire ISS dataset in json dictionary form\n"
+    epochs = "    '/epochs'                    Returns a list of all epochs of recorded ISS data\n"
+    query = "                                     Query Parameters: \n"
+    queryl = "                                         limit   Positive integer of how many epochs to display\n"
+    queryo = "                                         offset  Positive integer of which epoch will start the list\n"
+    state = "    '/epochs/<epoch>'            Returns the state vector (position in km and velocity in km/s) of the \n                                 ISS at a specified epoch\n"
+    speed = "    '/epochs/<epoch>/speed'      Returns the absolute speed of specific epoch in km/s\n"
+    help_route = "    '/help'                      Returns this help menu\n"
+    delete_data = "    '/delete-data'               Deletes all ISS Data stored in app. Must be run with '-X DELETE' \n                                 following the curl command and preceding the address and route.\n"
+    post_data = "    '/post-data'                 Retrieves ISS data from the ISS website restoring it after use of \n                                 '/delete-data'. Must be run with '-X POST' following the curl \n                                 command and preceding the address and route.\n"
+    comment = "     '/comment'                  Returns the comment block from the ISS data\n"
+    headers = "     '/header'                   Returns the header object from the ISS data\n"
+    metadata = "     '/metadata'                 Returns the metadata object from the ISS .xml data\n"
+    location = "     '/epochs/<epoch>/location'  Returns the geopositional location data for a given epoch\n"
+    now = "     '/now'                      Returns the geopositional location data for the epoch closest to the current time\n"
+    message = "\n" + intro + routes + slash + epochs + query + queryl + queryo + state + speed + help_route + delete_data + post_data + comment + headers + metadata + location + now
+
     return message
 
 @app.route('/delete-data',methods=['DELETE'])
