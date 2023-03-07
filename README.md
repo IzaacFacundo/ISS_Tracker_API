@@ -21,14 +21,19 @@ units for these components are km and km/s respectively.
 
 ## iss\_tracker.py
 
-This python script runs the API that the user can pull from. It has the following routes:
+This python script runs the API that the user can pull from. It has the following routes:  
     '/'  
     '/epochs' - contains query parameters 'limit' and 'offset  
     '/epochs/\<epoch>'  
     '/epochs/\<epoch>/speed'  
     '/help'  
     '/delete-data'  
-    '/post-data'  
+    '/post-data'    
+    '/comment'  
+    '/header'  
+    '/metadata'  
+    '/epochs/\<epoch>/location'  
+    '/now'  
 
 '/' returns the entire data set for the ISS tracker in .xml form. It returns it to the user as a dictionary.
 
@@ -38,34 +43,52 @@ This python script runs the API that the user can pull from. It has the followin
 
 '/epochs/\<epoch\>/speed' returns the absolute speed of the ISS in km/s at the given epoch.
 
+'/help' returns a message detailing all routes available to the user.
+
+'/delete-data' deletes the ISS data that was pulled from the .xml file on the ISS website
+
+'/post-data' posts the ISS data back to the server for use in other methods after it's been deleted
+
+'/comment' returns the comment block from the ISS .xml data
+
+'/header' returns the header object from the ISS .xml data
+
+'/metadata' returns the metadata object from the ISS .xml data
+
+'/epochs/\<epoch\>/location' returns the geopositional location data for a given epoch
+
+'/now' returns the geopositional location data for the epoch closest to the current time
+
 ## How to run the code
 
 To run the code, navigate to the directory that contains both the Dockerfile and the python script iss\_tracker.py.
 From there, you will want to either pull the Docker image from Docker Hub or build a new Docker image using the
 Dockerfile included. In any case, creating this docker image will ensure you have the correct dependencies to
-run the code.
+run the code. Docker must be installed to pull the image or create the container.
 
 ### Pull Docker image from Docker Hub
 
 Here is the command to pull this container from Docker Hub:
 ```
-    docker pull izaacfacundo/iss_tracker:hw5
-```
-### Build Docker Image locally
-
-To build the docker image locally, you must run the following command from within the directory that the python
-script and Dockerfile reside:
-```
-    docker build -t izaacfacundo/iss_tracker:hw5
+    docker pull izaacfacundo/iss_tracker:2.0
 ```
 
-### Run code with built docker image
+### Run code with pulled docker image
 
 Finally, to run the Flask web server you must run the following command:
 ```
-    docker run -t --rm -p 5000:5000 izaacfacundo/iss_tracker:hw5
+    docker run -t --rm -p 5000:5000 izaacfacundo/iss_tracker:2.0
 ```
-This launches the REST API that you can then call with the command 'curl'.
+This launches the REST API server that you can then call with the command 'curl'.
+
+### Create container  locally using docker-compose (easier)
+
+To create the container locally and automatically run the server, you must run the following command from within  
+the directory that the python script, Dockerfile, and docker-compose.yml file reside:
+```
+    docker-compose up
+```
+This launches the REST API server that you can then call with the command 'curl'.
 
 ### Example Queries
 
@@ -87,7 +110,7 @@ This should produce this output:
 }
 ```
 
-Here is another example command:
+Here is another example query:
 ```
     curl -X DELETE localhost:5000/delete-data
 ```
@@ -96,3 +119,12 @@ This should produce this message:
     Successfully deleted all ISS Data
 ```
 And all routes other than '/post-data' should produce an error message.
+
+
+Finally, here is what I believe to be the most impressive query to run:
+```
+    curl localhost:5000/now
+```
+This should produce this output:
+```
+    
