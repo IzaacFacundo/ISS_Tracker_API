@@ -30,19 +30,11 @@ This python script runs the API that the user can pull from. It has the followin
     '/delete-data'
     '/post-data'
 
-### '/'
-
 '/' returns the entire data set for the ISS tracker in .xml form. It returns it to the user as a dictionary.
-
-### '/epochs'
 
 '/epochs' returns a list of strings that contains all of the epochs (times) contained in the data.
 
-### '/epochs/\<epoch>'
-
 '/epochs/\<epoch>' returns the state vector of the ISS at the given epoch.
-
-### '/epochs/\<epoch>/speed'
 
 '/epochs/\<epoch\>/speed' returns the absolute speed of the ISS in km/s at the given epoch.
 
