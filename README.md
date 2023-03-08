@@ -138,7 +138,7 @@ This should produce this output:
       "units": "km",
       "value": 416.2411014770796
     },
-    "latitiude": 34.73405901165495,
+    "latitude": 34.73405901165495,
     "longitude": -78.85015633069156
   },
   "seconds_from_now": -88.0,

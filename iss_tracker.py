@@ -280,7 +280,7 @@ def get_location(epoch:str) -> dict:
     state_vector = get_state_vector(epoch)    
     geodata = convert_j2k_to_geoposition(state_vector)
     try: 
-        location = {"latitiude":geodata['latitude'],
+        location = {"latitude":geodata['latitude'],
                     "longitude":geodata['longitude'],
                     "altitude":geodata['altitude']
                     }    
@@ -336,7 +336,7 @@ def get_location_now() -> dict:
     geodata = convert_j2k_to_geoposition(state_vector)
 
     try:
-        location = {"latitiude":geodata['latitude'],
+        location = {"latitude":geodata['latitude'],
                     "longitude":geodata['longitude'],
                     "altitude":geodata['altitude']
                     }
