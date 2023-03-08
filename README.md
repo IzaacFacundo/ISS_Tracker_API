@@ -6,7 +6,7 @@ REST API can be set up with multiple routes. With a Flask server running, users 
 up to be accessed via the API. In this folder you will find two files: iss\_tracker.py & Dockerfile. When
 iss\_tracker.py is run, this code creates an API that can be accessed to return various information about the state
 of the ISS. This data comes from and can be accessed at this website in either .txt or .xml format:
-    https://spotthestation.nasa.gov/trajectory\_idata.cfm .
+    https://spotthestation.nasa.gov/trajectory_idata.cfm .
 Aside from providing the data, this website describes the data in more detail.
 
 In addition to providing the python script, there is also a Dockerfile provided for this package. This containerizes
