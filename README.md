@@ -54,6 +54,14 @@ From there, you will want to either pull the Docker image from Docker Hub or bui
 Dockerfile included. In any case, creating this docker image will ensure you have the correct dependencies to
 run the code. Docker must be installed to pull the image or create the container.
 
+### Build Docker image locally
+
+To build the docker image locally, you must run the following command from within the directory that the python
+script and Dockerfile reside:
+```
+    docker build -t izaacfacundo/iss_tracker:2.0 .
+```
+
 ### Pull Docker image from Docker Hub
 
 Here is the command to pull this container from Docker Hub:
@@ -61,15 +69,15 @@ Here is the command to pull this container from Docker Hub:
     docker pull izaacfacundo/iss_tracker:2.0
 ```
 
-### Run code with pulled docker image
+### Run code with pulled or locally built docker image
 
-Finally, to run the Flask web server you must run the following command:
+To run the Flask web server you must run the following command:
 ```
     docker run -t --rm -p 5000:5000 izaacfacundo/iss_tracker:2.0
 ```
 This launches the REST API server that you can then call with the command 'curl'.
 
-### Create container  locally using docker-compose (easier)
+### Launch container locally using docker-compose
 
 To create the container locally and automatically run the server, you must run the following command from within  
 the directory that the python script, Dockerfile, and docker-compose.yml file reside:
@@ -77,6 +85,7 @@ the directory that the python script, Dockerfile, and docker-compose.yml file re
     docker-compose up
 ```
 This launches the REST API server that you can then call with the command 'curl'.
+
 
 ### Example Queries
 
